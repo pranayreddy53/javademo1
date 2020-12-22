@@ -1,6 +1,6 @@
 pipeline {
 
-  agent { label 'kubepod' }
+  agent any
 
   stages {
 
@@ -9,7 +9,6 @@ pipeline {
         git url:'https://github.com/lingamnagani/javademo.git', branch:'master'
       }
     }
-
     stage('Deploy App') {
       steps {
       sshagent(['kserver']) {
@@ -20,10 +19,9 @@ pipeline {
         } catch(error) {
              sh "ssh ubuntu@13.233.66.168 kubectl create -f ."
 }
-        
+         }       
       }
-    }
-
-  }
-
+   }
+}
+}
 }
