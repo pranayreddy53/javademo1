@@ -28,7 +28,7 @@ metadata:
 spec:
   containers:
     - name: elastictrail
-      image:elasticsearch
+      image: elasticsearch
       env:
        - name: CLUSTER_NAME
          value: elasticsearch1
