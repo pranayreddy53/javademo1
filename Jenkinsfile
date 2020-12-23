@@ -3,7 +3,7 @@ pipeline {
     environment{
           Docker_TAG = getDockerTag()
     }
-
+    stages{
         stage('Deploy App') {
          steps{
               sh "chmod +x changeTag.sh"
@@ -21,6 +21,7 @@ pipeline {
             }
         }
     }
+}
 }
 def getDockerTag(){
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
