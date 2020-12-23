@@ -18,61 +18,27 @@ data:
       ingest: false
       #xpack.security.enabled: true
       #xpack.monitoring.collection.enabled: true
-      ---
-      apiVersion: apps/v1
-kind: Deployment
+---
+apiVersion: v1
+kind: Pod
 metadata:
-  namespace: logging
-  name: elasticsearch-master
+  name: elastictrail
   labels:
-    app: elasticsearch
-    role: master
+    app: elastictrail
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: elasticsearch
-      role: master
-  template:
-    metadata:
-      labels:
-        app: elasticsearch
-        role: master
-    spec:
-      containers:
-      - name: elasticsearch-master
-        image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
-        env:
-        - name: CLUSTER_NAME
-          value: elasticsearch
-        - name: NODE_NAME
-          value: elasticsearch-master
-        - name: NODE_LIST
-          value: elasticsearch-master,elasticsearch-data,elasticsearch-client
-        - name: MASTER_NODES
-          value: elasticsearch-master
-        - name: "ES_JAVA_OPTS"
-          value: "-Xms256m -Xmx256m"
-        ports:
-        - containerPort: 9300
-          name: transport
-        volumeMounts:
-        - name: config
-          mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
-          readOnly: true
-          subPath: elasticsearch.yml
-        - name: storage
-          mountPath: /data
-      volumes:
-      - name: config
-        configMap:
-          name: elasticsearch-master-config
-      - name: "storage"
-        emptyDir:
-          medium: ""
-      initContainers:
-      - name: increase-vm-max-map
-        image: busybox
-        command: ["sysctl", "-w", "vm.max_map_count=262144"]
-        securityContext:
-          privileged: true
+  containers:
+    - name: elastictrail
+      image:elasticsearch:tagVersion
+      env:
+       - name: CLUSTER_NAME
+         value: elasticsearch1
+       - name: NODE_NAME
+         value: elasticsearch-master1
+       - name: NODE_LIST
+         value: elasticsearch-master,elasticsearch-data,elasticsearch-client
+       - name: MASTER_NODES
+         value: elasticsearch-master1
+       - name: "ES_JAVA_OPTS"
+         value: "-Xms256m -Xmx256m"
+         ports:
+          - containerPort: 9400
