@@ -10,8 +10,9 @@ pipeline {
                   sh "scp -o  StrictHostKeyChecking=no config.yml ubuntu@13.233.196.119:/home/ubuntu/"
                   script{
                       try{
+                          sh "ssh ubuntu@13.233.196.119 kubectl create -f config.yml"
+                      }catch(error){
                           sh "ssh ubuntu@13.233.196.119 kubectl apply -f config.yml"
-                      }
                                     }
             }
         }
