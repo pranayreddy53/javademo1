@@ -9,12 +9,12 @@ pipeline {
               sh "chmod +x changeTag.sh"
               sh "./changeTag.sh ${Docker_TAG}"
               sshagent(['sampledemo']) {
-                  sh "scp -o  StrictHostKeyChecking=no elastic-app-pod.yml ubuntu@15.207.84.91:/home/ubuntu/"
+                  sh "scp -o  StrictHostKeyChecking=no elastic-app-pod.yml ubuntu@3.6.41.243:/home/ubuntu/"
                   script{
                       try{
-                          sh "ssh ubuntu@15.207.84.91 kubectl apply -f elastic-app-pod.yml"
+                          sh "ssh ubuntu@13.6.41.243 kubectl apply -f elastic-app-pod.yml"
                       } catch(error){
-                           sh "ssh ubuntu@15.207.84.91 kubectl create -f elastic-app-pod.yml"
+                           sh "ssh ubuntu@3.6.41.243 kubectl create -f elastic-app-pod.yml"
                    
 }
                                     }
