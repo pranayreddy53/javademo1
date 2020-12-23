@@ -6,15 +6,13 @@ pipeline {
     stages{
         stage('Deploy App') {
          steps{
-              sh "chmod +x changeTag.sh"
-              sh "./changeTag.sh ${Docker_TAG}"
               sshagent(['sampledemo']) {
-                  sh "scp -o  StrictHostKeyChecking=no elastic-app-pod.yml ubuntu@13.233.196.119:/home/ubuntu/"
+                  sh "scp -o  StrictHostKeyChecking=no config.yml ubuntu@13.233.196.119:/home/ubuntu/"
                   script{
                       try{
-                          sh "ssh ubuntu@13.233.196.119 kubectl apply -f elastic-app-pod.yml"
+                          sh "ssh ubuntu@13.233.196.119 kubectl apply -f config.yml"
                       } catch(error){
-                           sh "ssh ubuntu@13.233.196.119 kubectl create -f elastic-app-pod.yml"
+                           sh "ssh ubuntu@13.233.196.119 kubectl create -f config.yml"
                    
 }
                                     }
