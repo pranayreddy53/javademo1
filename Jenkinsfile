@@ -11,10 +11,7 @@ pipeline {
                   script{
                       try{
                           sh "ssh ubuntu@13.233.196.119 kubectl apply -f config.yml"
-                      } catch(error){
-                           sh "ssh ubuntu@13.233.196.119 kubectl create -f config.yml"
-                   
-}
+                      }
                                     }
             }
         }
