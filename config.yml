@@ -18,29 +18,34 @@ data:
       ingest: false
       #xpack.security.enabled: true
       #xpack.monitoring.collection.enabled: true
-      
--|
-
+     
 apiVersion: v1
 kind: Pod
-metadata:
-  name: elastictrail
-  labels:
+metadata: 
+  labels: 
     app: elastictrail
-spec:
-  containers:
-    - name: elastictrail
+  name: elastictrail
+spec: 
+  containers: 
+    - 
+      env: ~
       image: elasticsearch
-      env:
-       - name: CLUSTER_NAME
-         value: elasticsearch1
-       - name: NODE_NAME
-         value: elasticsearch-master1
-       - name: NODE_LIST
-         value: elasticsearch-master,elasticsearch-data,elasticsearch-client
-       - name: MASTER_NODES
-         value: elasticsearch-master1
-       - name: "ES_JAVA_OPTS"
-         value: "-Xms256m -Xmx256m"
-       ports:
-          - containerPort: 9400
+      name: elastictrail
+    - 
+      name: CLUSTER_NAME
+      value: elasticsearch1
+    - 
+      name: NODE_NAME
+      value: elasticsearch-master1
+    - 
+      name: NODE_LIST
+      value: "elasticsearch-master,elasticsearch-data,elasticsearch-client"
+    - 
+      name: MASTER_NODES
+      value: elasticsearch-master1
+    - 
+      name: ES_JAVA_OPTS
+      ports: 
+        - 
+          containerPort: 9400
+      value: "-Xms256m -Xmx256m"
