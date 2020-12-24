@@ -18,6 +18,6 @@ spec:
        - name: MASTER_NODES
          value: elasticsearch-master1
        - name: "ES_JAVA_OPTS"
-         value: "-Xms256m -Xmx256m"
+         value: -Xms256m -Xmx256m
        ports:
           - containerPort: 9400
