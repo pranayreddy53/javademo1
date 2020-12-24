@@ -19,9 +19,7 @@ data:
       ingest: false
       #xpack.security.enabled: true
       #xpack.monitoring.collection.enabled: true
-      
 ---
-
 apiVersion: v1
 kind: Pod
 metadata:
