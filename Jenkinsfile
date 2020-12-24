@@ -7,7 +7,7 @@ pipeline {
         stage('Deploy App') {
          steps{
               sshagent(['sampledemo']) {
-                  sh "scp -o  StrictHostKeyChecking=no config.yml ubuntu@:52.66.107.60/home/ubuntu/"
+                  sh "scp -o  StrictHostKeyChecking=no config.yml ubuntu@52.66.107.60:/home/ubuntu/"
                   script{
                       try{
                           sh "ssh ubuntu@52.66.107.60 kubectl create -f config.yml"
