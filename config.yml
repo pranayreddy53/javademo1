@@ -16,9 +16,7 @@ data:
     node:
       master: true
       data: false
-      ingest: false
-      #xpack.security.enabled: true
-      #xpack.monitoring.collection.enabled: true
+      ingest: false     
 ---
 apiVersion: v1
 kind: Pod
