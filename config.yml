@@ -18,8 +18,8 @@ data:
       data: false
       ingest: false    
       
----
-|-
+...
+
 apiVersion: v1
 kind: Pod
 metadata:
