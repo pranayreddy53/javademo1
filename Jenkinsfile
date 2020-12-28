@@ -7,12 +7,12 @@ pipeline {
         stage('Deploy App') {
          steps{
               sshagent(['sampledemo']) {
-                  sh "scp -o  StrictHostKeyChecking=no config.yml  ubuntu@52.66.107.60:/home/ubuntu/"
+                  sh "scp -o  StrictHostKeyChecking=no config.yml  ubuntu@65.0.18.223:/home/ubuntu/"
                   script{
                       try{
-                          sh "ssh ubuntu@52.66.107.60 kubectl create -f config.yml"
+                          sh "ssh ubuntu@65.0.18.223 kubectl create -f httppod.yml"
                       }catch(error){
-                          sh "ssh ubuntu@52.66.107.60 kubectl apply -f config.yml"
+                          sh "ssh ubuntu@65.0.18.223 kubectl apply -f httppod.yml"
                       } 
                                     }
             }
